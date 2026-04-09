@@ -9,10 +9,10 @@ const CalendarPage = () => {
 
   const key = `${currentMonth}-${currentYear}`;
   return (
-    <div className="min-h-screen bg-[#e5e7eb] flex items-center px-3 py-4 justify-center [perspective:1200px]">
+    <div className="min-h-[100dvh] bg-[#e5e7eb] flex items-center px-3 py-4 justify-center [perspective:1200px]">
       <AnimatePresence mode="wait">
         <motion.div
-          className="w-full flex justify-center"
+          className="w-full flex justify-center relative"
           key={key}
           initial={{
             rotateY: direction === "next" ? 90 : -90,

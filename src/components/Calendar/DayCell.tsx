@@ -32,6 +32,9 @@ const DayCell = ({ day }: Props) => {
   const holidays = getHolidays(day.date);
   const hasNotes = hasNoteForDate(day.date, notes);
 
+  const today = new Date();
+  const isToday = day.date.toDateString() === today.toDateString();
+
   const handleClick = () => {
     if (!range.start || (range.start && range.end)) {
       setRange({ start: day.date, end: null });
@@ -51,7 +54,13 @@ const DayCell = ({ day }: Props) => {
       onMouseLeave={() => setHoverDate(null)}
       title={holidays || ""}
       className={`relative flex items-center justify-center h-6 md:h-8 text-sm text-center cursor-pointer rounded-md
-        transition ${day.currentMonth ? "text-gray-900" : "text-gray-400"} ${inRange ? `${theme.light}` : ""}
+        transition ${
+          isToday &&
+          !isSameDay(day.date, range.start) &&
+          !isSameDay(day.date, range.end)
+            ? "border border-blue-500 bg-blue-300 font-semibold"
+            : ""
+        } ${day.currentMonth ? "text-gray-900" : "text-gray-400"} ${inRange ? `${theme.light}` : ""}
         ${isSameDay(day.date, range.start) ? `${theme.primary} text-white` : ""}
         ${isSameDay(day.date, range.end) ? `${theme.primary} text-white` : ""}`}
     >

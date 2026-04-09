@@ -35,14 +35,12 @@ const NotesPanel = () => {
   if (!range.start) {
     return (
       <>
-        <div className="text-xs mt-2 text-gray-400">
-          Select a date to add notes
-        </div>
+        <div className="text-xs text-gray-400">Select a date to add notes</div>
         <div className="space-y-2 hidden md:block mt-4 md:mt-0">
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="border-b border-gray-300 opacity-60 p-2"
+              className="border-b border-gray-500 opacity-60 p-2"
             ></div>
           ))}
         </div>
