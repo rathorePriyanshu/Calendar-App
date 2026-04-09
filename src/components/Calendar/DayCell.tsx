@@ -34,6 +34,9 @@ const DayCell = ({ day }: Props) => {
 
   const today = new Date();
   const isToday = day.date.toDateString() === today.toDateString();
+  const dayOfWeek = day.date.getDay();
+  const isSunday = dayOfWeek === 0;
+  const isSaturday = dayOfWeek === 6;
 
   const handleClick = () => {
     if (!range.start || (range.start && range.end)) {
@@ -53,14 +56,22 @@ const DayCell = ({ day }: Props) => {
       onMouseEnter={() => setHoverDate(day.date)}
       onMouseLeave={() => setHoverDate(null)}
       title={holidays || ""}
-      className={`relative flex items-center justify-center h-6 md:h-8 text-sm text-center cursor-pointer rounded-md
-        transition ${
+      className={`relative flex items-center justify-center h-6 md:h-8 text-sm text-center cursor-pointer rounded-md font-semibold
+        transition
+         ${
+           isSunday || isSaturday
+             ? theme.text
+             : day.currentMonth
+               ? "text-gray-900"
+               : "text-gray-400"
+         }
+        ${
           isToday &&
           !isSameDay(day.date, range.start) &&
           !isSameDay(day.date, range.end)
             ? "border border-blue-500 bg-blue-300 font-semibold"
             : ""
-        } ${day.currentMonth ? "text-gray-900" : "text-gray-400"} ${inRange ? `${theme.light}` : ""}
+        }${inRange ? `${theme.light}` : ""}
         ${isSameDay(day.date, range.start) ? `${theme.primary} text-white` : ""}
         ${isSameDay(day.date, range.end) ? `${theme.primary} text-white` : ""}`}
     >
