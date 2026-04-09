@@ -1,73 +1,66 @@
-# React + TypeScript + Vite
+#  Interactive Calendar Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A polished, interactive calendar built with React, TypeScript, and Tailwind CSS, inspired by a physical wall calendar design.  
+The component focuses on usability, visual aesthetics, and smooth user interaction.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+-  **Date & Range Selection**
+  - Select single dates or a full date range
+  - Visual highlighting for start, end, and in-between days
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-  **Notes System**
+  - Add notes to a specific date or a selected range
+  - Instant UI updates with local persistence
 
-## Expanding the ESLint configuration
+-  **Dynamic Monthly Themes**
+  - Each month has a unique hero image and color theme
+  - Theme automatically adapts across UI elements
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+-  **Smooth Flip Animation**
+  - Month navigation with 3D flip animation (Framer Motion)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+-  **Holiday Indicators**
+  - Important holidays marked directly on calendar
+  - Tooltip support for quick identification
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+-  **Fully Responsive**
+  - Optimized layout for mobile, tablet, and desktop
+  - Touch-friendly interactions
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **React + TypeScript**
+- **Tailwind CSS**
+- **Zustand** (State Management)
+- **Framer Motion** (Animations)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+##  Key Technical Decisions
+
+- Used **Zustand** for lightweight global state (range, notes, navigation)
+- Avoided redundant state by deriving UI state (range, highlights)
+- Implemented **localStorage** for persistence (no backend required)
+- Used **responsive-first design** instead of patch-based fixes
+- Optimized rendering by subscribing only to required state slices
+
+---
+
+##  Trade-offs
+
+- Holidays are partially hardcoded for demonstration purposes
+- No backend integration (as per assignment scope)
+- Notes are scoped per date/range using key-based mapping
+
+---
+
+## 🧪 How to Run
+
+```bash
+npm install
+npm run dev
